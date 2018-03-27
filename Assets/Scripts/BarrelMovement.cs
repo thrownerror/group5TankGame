@@ -24,6 +24,7 @@ public class BarrelMovement : MonoBehaviour {
 	GameObject reticle;
     bool powerUp;
     Rect powerRect;
+	Vector3 pos;
 	void Start () {
 		cam = Camera.main;
 		//fireAngle = 45.0f;
@@ -37,28 +38,31 @@ public class BarrelMovement : MonoBehaviour {
 	void Update () {
 		Vector3 mousePos;
 		mousePos = cam.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z - transform.position.z));
-		transform.parent.rotation = Quaternion.LookRotation (Vector3.forward, mousePos - transform.position);
+		pos = new Vector3(reticle.GetComponent<SocketClient>().xPos, reticle.GetComponent<SocketClient>().yPos, 0);
+
+		//transform.parent.rotation = Quaternion.LookRotation (Vector3.forward, mousePos - transform.position);
+		transform.parent.rotation = Quaternion.LookRotation(Vector3.forward, pos - transform.position);
 
 
 
-	/*	if (Input.GetKey(KeyCode.Space))
-		{
-			if (firePower < 1.0f)
+		/*	if (Input.GetKey(KeyCode.Space))
 			{
-				firePower += 0.01f;
-				//Debug.Log(firePower);
-			}
-			else
-			{
-				firePower = 1.0f;
-			}
-		}*/
+				if (firePower < 1.0f)
+				{
+					firePower += 0.01f;
+					//Debug.Log(firePower);
+				}
+				else
+				{
+					firePower = 1.0f;
+				}
+			}*/
 
 		if (Input.GetKeyDown (KeyCode.Space) || Input.GetAxisRaw("Fire") != 0.0f) 
 		{
             if (!firing)
             {
-                Vector3 pos = new Vector3(reticle.GetComponent<SocketClient>().xPos, reticle.GetComponent<SocketClient>().yPos, 0);
+                
                 firing = true;
             }
             else
@@ -86,14 +90,6 @@ public class BarrelMovement : MonoBehaviour {
 		//print ("x" + force.x + "y" + force.y);
 		_bulletholder.GetComponent<Rigidbody2D> ().AddRelativeForce (force * powerLevel, ForceMode2D.Impulse);
 
-		//Vector2 dir = (Vector2)(Quaternion.Euler(0, 0, fireAngle) * Vector2.right);
-		//Debug.Log(dir);
-
-		//Vector2 force = dir * (firePower * fireForce);
-
-		//_bulletholder.GetComponent<Rigidbody2D>().AddForce(force,ForceMode2D.Impulse);
-
-		//firePower = minFirePower;
 	}
     void PowerStage()
     {

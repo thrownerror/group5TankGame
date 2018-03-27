@@ -288,6 +288,7 @@
     <Compile Include="Assets\Scripts\Bullets.cs" />
     <Compile Include="Assets\Scripts\SocketClient.cs" />
     <Compile Include="Assets\Scripts\Tank.cs" />
+    <Compile Include="Assets\Scripts\targetScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
