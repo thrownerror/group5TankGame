@@ -19,12 +19,13 @@ public class BarrelMovement : MonoBehaviour {
 	//
 	//float fireAngle;
 	public float firePower = 1000f;
-
+	GameObject reticle;
 
 	void Start () {
 		cam = Camera.main;
 		//fireAngle = 45.0f;
 		//firePower = minFirePower;
+		reticle = GameObject.FindGameObjectWithTag("reticle");
 	}
 
 	// Update is called once per frame
@@ -50,7 +51,8 @@ public class BarrelMovement : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Space)) 
 		{
-			Fire (mousePos);
+			Vector3 pos =new Vector3(reticle.GetComponent<SocketClient>().xPos, reticle.GetComponent<SocketClient>().yPos, 0);
+			Fire (pos);
 		}
 	}
 
