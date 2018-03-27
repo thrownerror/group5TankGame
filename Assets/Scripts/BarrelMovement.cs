@@ -63,7 +63,7 @@ public class BarrelMovement : MonoBehaviour {
             }
             else
             {
-                Fire(mousePos);
+                Fire(pos);
                 firing = false;
                 Debug.Log("Power shot" + powerLevel);
             }
